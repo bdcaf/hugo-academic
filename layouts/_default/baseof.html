@@ -10,7 +10,9 @@
 
   {{- block "main" . -}}{{- end -}}
 
-  {{/* partial "site_js" . */}}
+  {{- if or (not (isset site.Params "nojavascript")) (not site.Params.nojavascript) -}}
+  {{ partial "site_js" . }}
+  {{- end -}}
 
   {{/* Docs and Updates layouts include the site footer in a different location. */}}
   {{- if not (in (slice "docs" "updates") .Type) -}}
